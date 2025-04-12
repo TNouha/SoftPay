@@ -1,0 +1,12 @@
+
+<div class="payment-list">
+    <h2>Liste des Paiements</h2>
+    
+    <ul>
+      <li *ngFor="let payment of payments">
+        <span>{{ payment.id }} - {{ payment.amount }}€</span>
+        <span>{{ payment.status }}</span>
+      </li>
+    </ul>
+  </div>
+  

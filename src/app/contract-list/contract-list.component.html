@@ -1,0 +1,11 @@
+<p>contract-list works!</p>
+<div class="contract-list">
+    <h2>Liste des Contrats</h2>
+    
+    <ul>
+      <li *ngFor="let contract of contracts">
+        <span>{{ contract.id }} - {{ contract.name }}</span>
+      </li>
+    </ul>
+  </div>
+  
