@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { PaymentService } from './services/payment.service'; 
-import { ContractService } from './services/contract.service'; 
+import { Component, OnInit } from '@angular/core'; 
+import { SoftpayService } from '../services/softpay.service';
+import { ContractService } from '../services/contract.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -13,20 +13,21 @@ export class DashboardComponent implements OnInit {
   totalContracts: number = 0;
 
   constructor(
-    private paymentService: PaymentService,
+    private SoftpayService: SoftpayService,
     private contractService: ContractService
   ) {}
 
   ngOnInit(): void {
-    this.paymentService.getTotalPayments().subscribe(data => {
-      this.totalPayments = data;
+    this.SoftpayService.getPayments().subscribe(data => {
+      this.totalPayments = data.reduce((sum, payment) => sum + payment.amount, 0);
     });
 
-    this.contractService.getTotalContracts().subscribe(data => {
+    this.contractService.getContracts().subscribe((data: number): void => {
       this.totalContracts = data;
     });
   }
 }
+
 
   
 
